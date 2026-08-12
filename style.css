@@ -1,0 +1,25 @@
+:root {
+    --primary: #2d3436;
+    --accent: #0984e3;
+    --bg: #f9f9f9;
+    --text: #333;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--bg);
+    margin: 0;
+    padding: 0;
+}
+
+header { padding: 2rem; text-align: center; font-weight: bold; font-size: 1.5rem; }
+
+section { padding: 4rem 10%; max-width: 900px; margin: auto; }
+
+h1 { font-size: 3rem; color: var(--primary); }
+
+.card { background: white; padding: 2rem; margin: 2rem 0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+button { background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
