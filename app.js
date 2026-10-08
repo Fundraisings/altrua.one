@@ -1,11 +1,12 @@
-const questions=[
-{key:'tema',title:'¿Qué tema te interesaría aprender para mejorar tu vida?',options:['Finanzas personales y manejo del dinero','Emprendimiento, negocios y ventas','Hábitos, mentalidad y desarrollo personal','Tecnología e inteligencia artificial','Otro tema']},
-{key:'compra',title:'Si encuentras un libro digital práctico sobre ese tema, ¿qué tan dispuesto estarías a comprarlo?',options:['Lo compraría si el contenido me convence','Probablemente, después de ver una muestra','Solo si tiene un precio muy bajo','No suelo comprar libros digitales']},
-{key:'precio',title:'¿Qué precio te parecería razonable por un libro digital útil, con ejercicios y recursos adicionales?',options:['US$7–9','US$10–14','US$15–20','Más de US$20','No pagaría por un libro digital']},
-{key:'motivacion',title:'¿Cuál de estas posibilidades te motivaría más a participar en Altrua?',options:['Aprender conocimientos que pueda aplicar','Obtener recompensas por recomendaciones que generen ventas','Competir por premios importantes, como un automóvil','Saber que parte de mi compra ayuda a animales']},
-{key:'participacion',title:'En una campaña donde gana el premio quien consigue más ventas válidas mediante su enlace personal, ¿cómo participarías?',options:['Crearía una estrategia para recomendar activamente','Lo compartiría con amigos y familiares','Compraría el libro, pero no competiría','No participaría en este modelo']},
-{key:'intencion',title:'Si Altrua abre próximamente, ¿qué harías?',options:['Me gustaría comprar y participar desde el lanzamiento','Quiero ver los libros, premios y reglas antes de decidir','Solo quiero seguir las novedades por ahora','No me interesa']}
-];
-let step=0;const answers={};const survey=document.getElementById('survey-content');const progress=document.getElementById('progress-fill');
-function render(){if(!survey)return;progress.style.width=`${step/questions.length*100}%`;if(step===questions.length){survey.innerHTML='<span class="badge">Encuesta completada</span><h2 style="margin:18px 0">¡Gracias por tu opinión!</h2><p>Esta es una vista previa. Tus respuestas no se han enviado ni guardado. Próximamente podrás registrarte para recibir noticias del lanzamiento.</p><a class="btn secondary" href="#comunidad">Conoce la comunidad fundadora →</a>';return;}const q=questions[step];survey.innerHTML=`<p class="small">Pregunta ${step+1} de ${questions.length}</p><h3 style="font-size:1.6rem;margin-bottom:22px">${q.title}</h3>${q.options.map((o,i)=>`<label class="choice"><input type="radio" name="answer" value="${i}" ${answers[q.key]===i?'checked':''}>${o}</label>`).join('')}<div class="survey-actions"><button type="button" class="btn outline" id="back" ${step===0?'disabled':''}>Anterior</button><button type="button" class="btn secondary" id="next" ${answers[q.key]===undefined?'disabled':''}>${step===questions.length-1?'Finalizar':'Siguiente →'}</button></div>`;survey.querySelectorAll('input').forEach(input=>input.addEventListener('change',()=>{answers[q.key]=Number(input.value);survey.querySelector('#next').disabled=false}));survey.querySelector('#back').addEventListener('click',()=>{step--;render()});survey.querySelector('#next').addEventListener('click',()=>{if(answers[q.key]===undefined)return;step++;render()})}render();
-const signup=document.getElementById('signup');if(signup)signup.addEventListener('submit',e=>{e.preventDefault();const status=document.getElementById('signup-status');status.textContent='El registro aún no está habilitado. Estamos preparando la conexión segura para recibir tus datos.';});
+document.addEventListener('DOMContentLoaded',()=>{
+const form=document.getElementById('participation-form');
+if(!form)return;
+const completion=document.getElementById('completion');
+form.addEventListener('submit',(event)=>{
+ event.preventDefault();
+ if(!form.reportValidity())return;
+ // DEMO ONLY: no network request, no storage of answers.
+ completion.hidden=false;
+ completion.scrollIntoView({behavior:'smooth',block:'center'});
+});
+});
